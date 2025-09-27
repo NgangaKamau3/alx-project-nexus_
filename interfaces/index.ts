@@ -17,6 +17,7 @@ export interface MainMovieProps {
     cast:         string[];
     plot:         string;
     posterUrl:    string;
+    backdropUrl:  string;
     trailerUrl:   string;
     isFeatured:   boolean;
     reviews:      Review[];
