@@ -60,14 +60,15 @@ const MatchOfTheDay: React.FC = () => {
             </button>
             <div ref={scrollRef} className="flex overflow-x-auto no-scrollbar scroll-smooth space-x-4 px-6">
                 {
-                    randomMovies.map(({ posterUrl, title, movie_id }: MainMovieProps) => (
+                    randomMovies.map(({ poster_url, title, movie_id }: MainMovieProps) => (
                         <Link href={`/movie/${movie_id}`} key={movie_id}>
                             <div className="flex-shrink-0 w-[250px]">
                                 <div className="w-full">
                                     <Image
-                                        src={posterUrl}
+                                        src={poster_url}
                                         alt={title}
-                                        fill
+                                        width={350}
+                                        height={90}
                                         className="object-cover w-full h-[150px] rounded-lg"
                                     />
                                 </div>

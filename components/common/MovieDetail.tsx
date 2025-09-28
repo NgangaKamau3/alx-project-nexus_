@@ -52,10 +52,11 @@ const MovieDetail: React.FC<{ property: MainMovieProps }> = ({ property }) => {
                 {/* Backdrop Image */}
                 <div className="w-full h-[250px] md:h-[50vh]">
                     <Image
-                        src={property.posterUrl}
+                        src={property.poster_url}
                         alt={`${property.title} trailer`}
-                        fill
-                        className="w-full h-[250px] md:h-[50vh] object-cover"
+                        width={800}
+                        height={300}
+                        className="w-full h-[350px] md:h-[50vh] object-cover"
                     />
                 </div>
 
@@ -65,9 +66,10 @@ const MovieDetail: React.FC<{ property: MainMovieProps }> = ({ property }) => {
                         {/* Poster */}
                         <div className="w-[130px] md:w-[230px]">
                             <Image
-                                src={property.posterUrl}
+                                src={property.poster_url}
                                 alt={`${property.title} poster`}
-                                fill
+                                width={230}
+                                height={325}
                                 className="h-[200px] md:h-[325px] w-full object-cover rounded-lg"
                             />
                         </div>
@@ -90,8 +92,8 @@ const MovieDetail: React.FC<{ property: MainMovieProps }> = ({ property }) => {
 
                             {/* Genres */}
                             <div className="flex flex-wrap gap-2 mt-2">
-                                {property.genre?.length > 0
-                                    ? property.genre.map((genreType, index) => (
+                                {property.genres?.length > 0
+                                    ? property.genres.map((genreType, index) => (
                                         <button key={index} className="btn-one">{genreType}</button>
                                     ))
                                     : <button>Uncategorized</button>
@@ -156,7 +158,7 @@ const MovieDetail: React.FC<{ property: MainMovieProps }> = ({ property }) => {
                             </button>
                         ))}
                     </div>
-                    <div className="mt-4 w-1/2">
+                    <div className="mt-4 md:w-1/2">
                         {tabs[activeTab].content}
                     </div>
                 </div>

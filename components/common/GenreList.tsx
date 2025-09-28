@@ -34,7 +34,7 @@ const GenreList: React.FC = () => {
         return <p>Loading genres...</p>
     }
 
-    const filteredMovies = selectedGenre ? movies.filter((movie) => movie.genre.includes(selectedGenre)) : movies;
+    const filteredMovies = selectedGenre ? movies.filter((movie) => movie.genres.includes(selectedGenre)) : movies;
     const handleGenreClick = (genre: string) => {
         setSelectedGenre((prev) => (prev === genre ? null : genre))
     }
@@ -56,10 +56,11 @@ const GenreList: React.FC = () => {
                             <Link href={`/movie/${movie.movie_id}`} key={movie.movie_id}>
                                 <div className="flex flex-col gap-3">
                                     <Image
-                                        src={movie.posterUrl}
+                                        src={movie.poster_url}
                                         alt={movie.title}
-                                        fill
-                                        className="object-cover w-full h-full rounded-lg"
+                                        width={350}
+                                        height={150}
+                                        className="w-full rounded-lg"
                                     />
                                     <div className="text-center">{movie.title}</div>
                                 </div>

@@ -15,15 +15,15 @@ export interface MainMovieProps {
     movie_id: number;
     title: string;
     year?: number;
-    genre: string[];
+    genres: string[];
     rating?: number;
     duration?: number;
     language?: string;
-    releaseDate: string;
+    release_date: string;
     director?: string;
     cast?: string[];
     description: string;
-    posterUrl: string;
+    poster_url: string;
     backdropUrl?: string;
     trailerUrl?: string;
     isFeatured?: boolean;
@@ -47,7 +47,7 @@ export interface AddPercentageProps extends Omit<MainMovieProps, "releaseDate"> 
     releaseDate?: Date;
 }
 
-export type MatchDay = Pick<AddPercentageProps, "movie_id" | "posterUrl" | "title" | "percentage">;
+export type MatchDay = Pick<AddPercentageProps, "movie_id" | "poster_url" | "title" | "percentage">;
 
 export interface GetRandomMovieProps {
     count: number;

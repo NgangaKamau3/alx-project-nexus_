@@ -62,12 +62,13 @@ export default function Home() {
             </div>
           </div>
         </div>
-        <div>
+        <div className="w-full md:w-1/2 h-[350px] md:h-[500px] relative">
           <Image
-            src={randomMovie.posterUrl}
+            src={randomMovie.poster_url}
             alt={randomMovie.title}
-            fill
-            className="object-cover w-full h-full"
+            width={800}
+            height={500}
+            className="w-full h-full"
           />
         </div>
       </div>

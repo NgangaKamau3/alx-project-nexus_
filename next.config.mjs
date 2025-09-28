@@ -9,7 +9,10 @@ const withPWA = withPWAInit({
 const nextConfig = {
   reactStrictMode: true,
    images: {
-    remotePatterns: [
+    remotePatterns: [{
+        protocol: "https",
+        hostname: "image.tmdb.org",
+      },
       {
         protocol: "https",
         hostname: "m.media-amazon.com",
