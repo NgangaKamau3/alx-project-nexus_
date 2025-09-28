@@ -1,4 +1,3 @@
-// import { MOVIE_DATA } from "@/constants";
 import { useEffect, useState } from "react";
 import GenreButton from "./GenreButton";
 import Link from "next/link";

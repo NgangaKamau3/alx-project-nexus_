@@ -1,9 +1,8 @@
-import { AddPercentageProps, MainMovieProps } from "@/interfaces";
+import { MainMovieProps } from "@/interfaces";
 import { useEffect, useState } from "react";
 import { FaBookmark, FaImdb } from "react-icons/fa";
 import { FaPlus, FaRegBookmark } from "react-icons/fa6";
 import { GiTomato } from "react-icons/gi";
-// import { IoStar } from "react-icons/io5";
 import { MdOutlineStarRate } from "react-icons/md";
 
 const MovieDetail: React.FC<{ property: MainMovieProps }> = ({ property }) => {

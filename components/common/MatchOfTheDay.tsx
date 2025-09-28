@@ -1,5 +1,4 @@
-// import { MOVIE_DATA } from "@/constants";
-import { MainMovieProps, MatchDay, MovieApiResponse } from "@/interfaces"
+import { MainMovieProps, MovieApiResponse } from "@/interfaces"
 import axios from "axios";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";

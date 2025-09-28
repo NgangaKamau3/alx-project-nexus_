@@ -1,40 +1,139 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/pages/api-reference/create-next-app).
+# Movie Recommendation App
 
-## Getting Started
+A **real-world movie recommendation application** built as part of the **ProDev Frontend program**, designed to showcase scalable, user-focused development practices. This project leverages modern frontend technologies to deliver an engaging experience for browsing, saving, and recommending movies.
 
-First, run the development server:
+---
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## Overview
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+This application allows users to:
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+* Browse trending and recommended movies.
+* View detailed movie pages via **dynamic routing**.
+* Save their favorite movies locally or through an API backend.
+* Interact with a responsive, visually appealing dashboard.
 
-[API routes](https://nextjs.org/docs/pages/building-your-application/routing/api-routes) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+---
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/pages/building-your-application/routing/api-routes) instead of React pages.
+## Project Goals
 
-This project uses [`next/font`](https://nextjs.org/docs/pages/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+1. **Dynamic Routing**
 
-## Learn More
+   * Implement detailed movie pages using Next.js routing.
 
-To learn more about Next.js, take a look at the following resources:
+2. **User Personalization**
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn-pages-router) - an interactive Next.js tutorial.
+   * Allow users to save and manage their favorite movies locally or via API.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+3. **Interactive Dashboard**
 
-## Deploy on Vercel
+   * Build a responsive and engaging UI for exploring movies and recommendations.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+---
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/pages/building-your-application/deploying) for more details.
+## Technologies Used
+
+* **Next.js** (React Framework) → for SSR, routing, and performance.
+* **React Native (optional PWA/Mobile)** → cross-platform flexibility.
+* **TypeScript** → type safety and scalability.
+* **Styled Components** → clean and reusable styling.
+
+---
+
+## Key Features
+
+1. **API Integration**
+
+   * Fetch trending/recommended movies from a public movie API.
+   * Implement error handling and loading states.
+
+2. **Dynamic Routing**
+
+   * Fast, SEO-friendly detailed movie pages.
+
+3. **Save Favorite Movies**
+
+   * Local storage support for quick saving.
+   * Optional backend API integration.
+
+4. **Responsive & Interactive UI**
+
+   * Works seamlessly across desktop and mobile.
+   * Smooth animations, hover states, and polished movie cards.
+
+---
+
+## Implementation Process
+
+### Git Commit Workflow
+
+* **Initial Setup**
+
+  * `feat: initialize Next.js project with TypeScript`
+  * `feat: integrate movie API for fetching data`
+
+* **Feature Development**
+
+  * `feat: implement detailed movie pages with dynamic routing`
+  * `feat: add functionality to save favorite movies`
+
+* **UI Enhancements**
+
+  * `style: design UI using Styled Components`
+
+* **Bug Fixes**
+
+  * `fix: resolve rendering issues on dynamic pages`
+
+* **Documentation**
+
+  * `docs: add API setup and usage instructions`
+
+---
+
+## Installation & Setup
+
+Follow these steps to run the project locally:
+
+1. **Clone the Repository**
+
+   ```bash
+   git clone https://github.com/your-username/movie-recommendation-app.git
+   cd movie-recommendation-app
+   ```
+
+2. **Install Dependencies**
+
+   ```bash
+   npm install
+   # or
+   yarn install
+   ```
+
+3. **Set Up Environment Variables**
+   Create a `.env.local` file in the project root and add:
+
+   ```env
+   NEXT_PUBLIC_API_BASE_URL=https://api.example.com
+   ```
+
+4. **Run Development Server**
+
+   ```bash
+   npm run dev
+   # or
+   yarn dev
+   ```
+
+5. **Open in Browser**
+   Visit [http://localhost:3000](http://localhost:3000) to see the app in action.
+
+---
+
+## Deployment
+
+* Deploy using **Vercel** or **Netlify** for easy access and testing.
+
+---
+
+💡 *This project is a hands-on learning journey into building real-world, scalable frontend applications that combine API integration, modern frameworks, and interactive design.*

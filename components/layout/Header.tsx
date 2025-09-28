@@ -12,7 +12,7 @@ const Header: React.FC = () => {
             <div className="flex justify-between items-center gap-6">
                 <Link href="/">
                     <Image
-                        src={"/assets/movies/logo.png"}
+                        src={"/icons/logo.png"}
                         width={100}
                         height={100}
                         alt="Logo"

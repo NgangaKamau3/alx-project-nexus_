@@ -1,4 +1,3 @@
-// import { MOVIEGENRES } from "@/constants"
 import { GenreProps } from "@/interfaces";
 
 const GenreButton: React.FC<GenreProps> = ({ selectedGenre, buttonClick, genres }) => {
