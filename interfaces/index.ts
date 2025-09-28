@@ -4,50 +4,70 @@ export interface ComponentProps {
     children: ReactNode;
 }
 
+export interface MovieApiResponse {
+    count: number;
+    next: string | null;
+    previous: string | null;
+    results: MainMovieProps[];
+}
+
 export interface MainMovieProps {
-    id:           number;
-    title:        string;
-    year:         number;
-    genre:        string[];
-    rating:       number;
-    duration:     number;
-    language:     string;
-    releaseDate:  string;
-    director:     string;
-    cast:         string[];
-    plot:         string;
-    posterUrl:    string;
-    backdropUrl:  string;
-    trailerUrl:   string;
-    isFeatured:   boolean;
-    reviews:      Review[];
-    ageRating:    string;
-    boxOffice:    string;
-    awards:       any[];
-    tags:         string[];
-    whereToWatch: string[];
-    addedAt:      string;
+    movie_id: number;
+    title: string;
+    year?: number;
+    genre: string[];
+    rating?: number;
+    duration?: number;
+    language?: string;
+    releaseDate: string;
+    director?: string;
+    cast?: string[];
+    description: string;
+    posterUrl: string;
+    backdropUrl?: string;
+    trailerUrl?: string;
+    isFeatured?: boolean;
+    reviews?: Review[];
+    ageRating?: string;
+    boxOffice?: string;
+    awards?: any[];
+    tags?: string[];
+    whereToWatch?: string[];
+    addedAt?: string;
 }
 
 export interface Review {
-    user:    string;
+    user: string;
     comment: string;
-    stars:   number;
+    stars: number;
 }
 
 export interface AddPercentageProps extends Omit<MainMovieProps, "releaseDate"> {
-    percentage: string;
-    releaseDate: Date;
+    percentage?: string;
+    releaseDate?: Date;
 }
 
-export type MatchDay = Pick<AddPercentageProps, "id" | "posterUrl" | "title" | "percentage">;
+export type MatchDay = Pick<AddPercentageProps, "movie_id" | "posterUrl" | "title" | "percentage">;
 
 export interface GetRandomMovieProps {
     count: number;
     movies: AddPercentageProps[];
 }
 
+export interface GenreApiResponse {
+    count: number;
+    next: string | null;
+    previous: string | null;
+    results: GenreTypesProps[];
+}
+
+export interface GenreTypesProps {
+    id: number;
+    name: string;
+}
+
 export interface GenreProps {
+    genres: GenreTypesProps[];
     selectedGenre: string | null;
     buttonClick: (genre: string) => void;
 }

@@ -1,6 +1,5 @@
 import { FaPlay } from "react-icons/fa";
 import MatchOfTheDay from "@/components/common/MatchOfTheDay";
-import { MOVIEGENRES } from "@/constants";
 import GenreList from "@/components/common/GenreList";
 
 export default function Home() {

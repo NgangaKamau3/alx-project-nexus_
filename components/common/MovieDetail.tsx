@@ -1,46 +1,48 @@
-import { AddPercentageProps } from "@/interfaces";
+import { AddPercentageProps, MainMovieProps } from "@/interfaces";
 import { useEffect, useState } from "react";
-import { FaImdb } from "react-icons/fa";
+import { FaBookmark, FaImdb } from "react-icons/fa";
 import { FaPlus, FaRegBookmark } from "react-icons/fa6";
 import { GiTomato } from "react-icons/gi";
-import { IoStar } from "react-icons/io5";
+// import { IoStar } from "react-icons/io5";
 import { MdOutlineStarRate } from "react-icons/md";
 
-const MovieDetail: React.FC<{ property: AddPercentageProps }> = ({ property }) => {
+const MovieDetail: React.FC<{ property: MainMovieProps }> = ({ property }) => {
     const tabs = [
         {
             label: "Description",
             content: (
                 <div>
                     <p className="font-semibold mb-2">About the movie</p>
-                    <p>{property.plot}</p>
+                    <p>{property.description} || "No description yet</p>
                 </div>
             )
         },
         {
             label: "Ratings",
-            content: ""
+            content: (
+                <p>{property.rating ? `${property.rating}/10` : "No ratings yet."}</p>
+            )
         },
-        {
-            label: "Comments",
-            content: property.reviews.length > 0
-                ? property.reviews.map((review, index) => (
-                    <div key={index} className="flex flex-col gap-1 mt-2 md:mt-4">
-                        <div className="flex justify-between">
-                            <div>{review.user}</div>
-                            <div className="flex">
-                                {
-                                    Array.from({length: review.stars}).map((_, i) => (
-                                        <IoStar key={i} size={18} color="green" />
-                                    ))
-                                }
-                            </div>
-                        </div>
-                        <div className="pb-1.5">{review.comment}</div>
-                        <hr />
-                    </div>
-                )) : (<p>No reviews yet</p>),
-        },
+        // {
+        //     label: "Comments",
+        //     content: property.reviews.length > 0
+        //         ? property.reviews.map((review, index) => (
+        //             <div key={index} className="flex flex-col gap-1 mt-2 md:mt-4">
+        //                 <div className="flex justify-between">
+        //                     <div>{review.user}</div>
+        //                     <div className="flex">
+        //                         {
+        //                             Array.from({length: review.stars}).map((_, i) => (
+        //                                 <IoStar key={i} size={18} color="green" />
+        //                             ))
+        //                         }
+        //                     </div>
+        //                 </div>
+        //                 <div className="pb-1.5">{review.comment}</div>
+        //                 <hr />
+        //             </div>
+        //         )) : (<p>No reviews yet</p>),
+        // },
     ];
 
     const [activeTab, setActiveTab] = useState<number>(0);
@@ -48,16 +50,16 @@ const MovieDetail: React.FC<{ property: AddPercentageProps }> = ({ property }) =
 
     useEffect(() => {
         const savedMovies = JSON.parse(localStorage.getItem("savedMovies") || "[]");
-        setIsSaved(savedMovies.includes(property.id));
-    },[property.id]);
+        setIsSaved(savedMovies.includes(property.movie_id));
+    },[property.movie_id]);
 
     const handleSave = () => {
         let savedMovies: number[] = JSON.parse(localStorage.getItem("savedMovies") || "[]");
 
         if (isSaved) {
-            savedMovies = savedMovies.filter((movieId) => movieId !== property.id);
+            savedMovies = savedMovies.filter((movieId) => movieId !== property.movie_id);
         } else {
-            savedMovies.push(property.id);
+            savedMovies.push(property.movie_id);
         }
 
         localStorage.setItem("savedMovies", JSON.stringify(savedMovies));
@@ -70,7 +72,7 @@ const MovieDetail: React.FC<{ property: AddPercentageProps }> = ({ property }) =
                 {/* Backdrop Image */}
                 <div className="w-full h-[250px] md:h-[50vh]">
                     <img
-                        src={property.backdropUrl}
+                        src={property.posterUrl}
                         alt={`${property.title} trailer`}
                         className="w-full h-[250px] md:h-[50vh] object-cover"
                     />
@@ -96,11 +98,11 @@ const MovieDetail: React.FC<{ property: AddPercentageProps }> = ({ property }) =
                             <div className="flex gap-6 mt-2 text-sm md:text-base text-[#A3A3A3]">
                                 <div className="flex items-center">
                                     <FaImdb size={20} color="#EDBF17" className="mr-1.5" />
-                                    {property.rating}/10.0
+                                    {property.rating ? `${property.rating}/10.0` : "N/A"}
                                 </div>
                                 <div className="flex items-center">
                                     <GiTomato color="red" size={20} className="mr-1.5" />
-                                    {property.percentage}
+                                    "N/A"
                                 </div>
                             </div>
 
@@ -110,7 +112,7 @@ const MovieDetail: React.FC<{ property: AddPercentageProps }> = ({ property }) =
                                     ? property.genre.map((genreType, index) => (
                                         <button key={index} className="btn-one">{genreType}</button>
                                     ))
-                                    : <button>Action</button>
+                                    : <button>Uncategorized</button>
                                 }
                             </div>
 
@@ -118,15 +120,15 @@ const MovieDetail: React.FC<{ property: AddPercentageProps }> = ({ property }) =
                             <div className="flex gap-6 mt-3 text-sm md:text-base">
                                 <div>
                                     <p>Year</p>
-                                    <p className="text-[#A3A3A3]">{property.year}</p>
+                                    <p className="text-[#A3A3A3]">{property.year || "—"}</p>
                                 </div>
                                 <div>
                                     <p>Language</p>
-                                    <p className="text-[#A3A3A3]">{property.language}</p>
+                                    <p className="text-[#A3A3A3]">{property.language || "—"}</p>
                                 </div>
                                 <div>
                                     <p>Rating</p>
-                                    <p className="text-[#A3A3A3]">{property.ageRating}</p>
+                                    <p className="text-[#A3A3A3]">{property.ageRating || "—"}</p>
                                 </div>
                             </div>
                         </div>
@@ -142,7 +144,7 @@ const MovieDetail: React.FC<{ property: AddPercentageProps }> = ({ property }) =
                     onClick={handleSave}
                 >
                     {isSaved
-                        ? <FaRegBookmark size={17} className="pr-1.5" />
+                        ? <FaBookmark size={17} className="pr-1.5" />
                         : <FaRegBookmark size={17} className="pr-1.5" /> 
                     }
                     {isSaved ? "Saved" : "Save"}
@@ -178,7 +180,7 @@ const MovieDetail: React.FC<{ property: AddPercentageProps }> = ({ property }) =
                 </div>
 
                 {/* Where to watch */}
-                <div className="mt-6">
+                {/* <div className="mt-6">
                     <p className="font-semibold mb-2">Available on</p>
                     <div className="flex gap-3 flex-wrap">
                         {property.whereToWatch.length > 0
@@ -190,7 +192,7 @@ const MovieDetail: React.FC<{ property: AddPercentageProps }> = ({ property }) =
                             : <button className="btn-one">YouTube</button>
                         }
                     </div>
-                </div>
+                </div> */}
             </div>
         </div>
     )

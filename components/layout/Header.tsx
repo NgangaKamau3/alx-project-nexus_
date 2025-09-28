@@ -10,12 +10,14 @@ const Header: React.FC = () => {
     return (
         <div className="text-gray-300">
             <div className="flex justify-between items-center gap-6">
-                <Image
-                    src={"/assets/movies/logo.png"}
-                    width={100}
-                    height={100}
-                    alt="Logo"
-                />
+                <Link href="/">
+                    <Image
+                        src={"/assets/movies/logo.png"}
+                        width={100}
+                        height={100}
+                        alt="Logo"
+                    />
+                </Link>
                 <div className="hidden md:flex gap-6 px-3">
                     <Link href="#" className="nav-link">Match of The Day</Link>
                     <Link href="#" className="nav-link">Browse All</Link>

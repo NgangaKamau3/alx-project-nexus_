@@ -1,19 +1,19 @@
-import { MOVIEGENRES } from "@/constants"
+// import { MOVIEGENRES } from "@/constants"
 import { GenreProps } from "@/interfaces";
 
-const GenreButton: React.FC<GenreProps> = ({ selectedGenre, buttonClick }) => {
+const GenreButton: React.FC<GenreProps> = ({ selectedGenre, buttonClick, genres }) => {
+
     return (
         <div className="flex overflow-x-auto no-scrollbar space-x-4">
             {
-                MOVIEGENRES.map((genre) => (
-                    <div className="w-32">
+                genres.map((genre) => (
+                    <div className="w-32" key={genre.id}>
                         <button
-                            key={genre}
-                            onClick={() => buttonClick(genre)}
-                            className={`w-full btn ${selectedGenre === genre ? "btn-active" : "btn-secondary"
+                            onClick={() => buttonClick(genre.name)}
+                            className={`w-full btn ${selectedGenre === genre.name ? "btn-active" : "btn-secondary"
                                 }`}
                         >
-                            {genre}
+                            {genre.name}
                         </button>
                     </div>
                 ))

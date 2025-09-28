@@ -1,16 +1,43 @@
-import { MOVIE_DATA } from "@/constants";
-import { AddPercentageProps, GetRandomMovieProps, MatchDay } from "@/interfaces"
+// import { MOVIE_DATA } from "@/constants";
+import { MainMovieProps, MatchDay, MovieApiResponse } from "@/interfaces"
+import axios from "axios";
+import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { BiChevronLeft, BiChevronRight } from "react-icons/bi";
 
 const MatchOfTheDay: React.FC = () => {
-    const [randomMovies, setRandomMovies] = useState<typeof MOVIE_DATA>([]);
+    const [movies, setMovies] = useState<MainMovieProps[]>([]);
+    const [loading, setLoading] = useState<boolean>(true);
+
+    useEffect(() => {
+        const fetchData = async () => {
+            setLoading(true);
+            try {
+                const moviesRes = await axios.get<MovieApiResponse>(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/v1/movies/`)
+                setMovies(moviesRes.data.results);
+            } catch (error) {
+                console.log("Error fetching data", error);
+            } finally {
+                setLoading(false);
+            }
+        }
+
+        fetchData()
+    }, [])
+
+    const [randomMovies, setRandomMovies] = useState<typeof movies>([]);
     const scrollRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
-        const shuffled = [...MOVIE_DATA].sort(() => Math.random() - 0.5).slice(0, 10);
-        setRandomMovies(shuffled);
-    }, []);
+        if (movies.length > 0) {
+            const shuffled = [...movies].sort(() => Math.random() - 0.5).slice(0, 10);
+            setRandomMovies(shuffled);
+        }
+    }, [movies]);
+
+    if (loading) {
+        return <p>Loading...</p>
+    }
 
     const scroll = (direction: "left" | "right") => {
         if (scrollRef.current) {
@@ -33,14 +60,16 @@ const MatchOfTheDay: React.FC = () => {
             </button>
             <div ref={scrollRef} className="flex overflow-x-auto no-scrollbar scroll-smooth space-x-4 px-6">
                 {
-                    randomMovies.map(({ posterUrl, title, percentage, id }: MatchDay) => (
-                        <div key={id} className="flex-shrink-0 w-[250px]">
-                            <div className="w-full"><img src={posterUrl} alt={title} className="w-full h-[150px] object-cover rounded-lg" /></div>
-                            <div className="flex items-center justify-between mt-2">
-                                <div className="truncate">{title}</div>
-                                <div>{percentage}</div>
+                    randomMovies.map(({ posterUrl, title, movie_id }: MainMovieProps) => (
+                        <Link href={`/movie/${movie_id}`} key={movie_id}>
+                            <div className="flex-shrink-0 w-[250px]">
+                                <div className="w-full"><img src={posterUrl} alt={title} className="w-full h-[150px] object-cover rounded-lg" /></div>
+                                <div className="flex items-center justify-between mt-2">
+                                    <div className="truncate">{title}</div>
+                                    <div>{Math.floor(Math.random() * 100)}%</div>
+                                </div>
                             </div>
-                        </div>
+                        </Link>
                     ))
                 }
             </div>
