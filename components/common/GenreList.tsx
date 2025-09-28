@@ -94,15 +94,15 @@ const GenreList: React.FC = () => {
             <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
                 {filteredMovies.map((movie) => (
                     <Link href={`/movie/${movie.movie_id}`} key={movie.movie_id}>
-                        <div className="flex flex-col gap-3">
+                        <div className="flex flex-col gap-3 group">
                             <Image
                                 src={movie.poster_url}
                                 alt={movie.title}
                                 width={350}
                                 height={150}
-                                className="w-full rounded-lg"
+                                className="w-full rounded-lg hover:bg-black group-hover:opacity-60 transition"
                             />
-                            <div className="text-center">{movie.title}</div>
+                            <div className="text-center group-hover:opacity-50 transition">{movie.title}</div>
                         </div>
                     </Link>
                 ))}
