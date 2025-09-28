@@ -13,7 +13,7 @@ const MovieDetail: React.FC<{ property: MainMovieProps }> = ({ property }) => {
             content: (
                 <div>
                     <p className="font-semibold mb-2">About the movie</p>
-                    <p>{property.description} || "No description yet</p>
+                    <p>{property.description} || &quot;No description yet&quot;</p>
                 </div>
             )
         },
@@ -160,21 +160,6 @@ const MovieDetail: React.FC<{ property: MainMovieProps }> = ({ property }) => {
                         {tabs[activeTab].content}
                     </div>
                 </div>
-
-                {/* Where to watch */}
-                {/* <div className="mt-6">
-                    <p className="font-semibold mb-2">Available on</p>
-                    <div className="flex gap-3 flex-wrap">
-                        {property.whereToWatch.length > 0
-                            ? property.whereToWatch.map((watch, index) => (
-                                <button key={index} className="btn-one">
-                                    {watch}
-                                </button>
-                            ))
-                            : <button className="btn-one">YouTube</button>
-                        }
-                    </div>
-                </div> */}
             </div>
         </div>
     )
