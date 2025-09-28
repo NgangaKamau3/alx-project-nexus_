@@ -1,5 +1,6 @@
 import { MainMovieProps, MovieApiResponse } from "@/interfaces"
 import axios from "axios";
+import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { BiChevronLeft, BiChevronRight } from "react-icons/bi";
@@ -62,7 +63,14 @@ const MatchOfTheDay: React.FC = () => {
                     randomMovies.map(({ posterUrl, title, movie_id }: MainMovieProps) => (
                         <Link href={`/movie/${movie_id}`} key={movie_id}>
                             <div className="flex-shrink-0 w-[250px]">
-                                <div className="w-full"><img src={posterUrl} alt={title} className="w-full h-[150px] object-cover rounded-lg" /></div>
+                                <div className="w-full">
+                                    <Image
+                                        src={posterUrl}
+                                        alt={title}
+                                        fill
+                                        className="object-cover w-full h-[150px] rounded-lg"
+                                    />
+                                </div>
                                 <div className="flex items-center justify-between mt-2">
                                     <div className="truncate">{title}</div>
                                     <div>{Math.floor(Math.random() * 100)}%</div>

@@ -3,6 +3,7 @@ import GenreButton from "./GenreButton";
 import Link from "next/link";
 import { GenreApiResponse, GenreTypesProps, MainMovieProps, MovieApiResponse } from "@/interfaces";
 import axios from "axios";
+import Image from "next/image";
 
 const GenreList: React.FC = () => {
     const [movies, setMovies] = useState<MainMovieProps[]>([]);
@@ -19,7 +20,7 @@ const GenreList: React.FC = () => {
 
                 const moviesRes = await axios.get<MovieApiResponse>(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/v1/movies/`)
                 setMovies(moviesRes.data.results);
-            } catch(error) {
+            } catch (error) {
                 console.log("Error fetching data", error);
             } finally {
                 setLoading(false);
@@ -47,14 +48,19 @@ const GenreList: React.FC = () => {
             </div>
 
             <GenreButton genres={genres} selectedGenre={selectedGenre} buttonClick={handleGenreClick} />
-            
+
             {!loading && (
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
                     {
                         filteredMovies.map((movie) => (
-                            <Link href={`/movie/${movie.movie_id}`}  key={movie.movie_id}>
+                            <Link href={`/movie/${movie.movie_id}`} key={movie.movie_id}>
                                 <div className="flex flex-col gap-3">
-                                    <img src={movie.posterUrl} alt={movie.title} className="rounded-lg" />
+                                    <Image
+                                        src={movie.posterUrl}
+                                        alt={movie.title}
+                                        fill
+                                        className="object-cover w-full h-full rounded-lg"
+                                    />
                                     <div className="text-center">{movie.title}</div>
                                 </div>
                             </Link>

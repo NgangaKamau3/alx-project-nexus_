@@ -1,4 +1,5 @@
 import { MainMovieProps } from "@/interfaces";
+import Image from "next/image";
 import { useEffect, useState } from "react";
 import { FaBookmark, FaImdb } from "react-icons/fa";
 import { FaPlus, FaRegBookmark } from "react-icons/fa6";
@@ -50,7 +51,7 @@ const MovieDetail: React.FC<{ property: MainMovieProps }> = ({ property }) => {
     useEffect(() => {
         const savedMovies = JSON.parse(localStorage.getItem("savedMovies") || "[]");
         setIsSaved(savedMovies.includes(property.movie_id));
-    },[property.movie_id]);
+    }, [property.movie_id]);
 
     const handleSave = () => {
         let savedMovies: number[] = JSON.parse(localStorage.getItem("savedMovies") || "[]");
@@ -70,9 +71,10 @@ const MovieDetail: React.FC<{ property: MainMovieProps }> = ({ property }) => {
             <div className="w-full">
                 {/* Backdrop Image */}
                 <div className="w-full h-[250px] md:h-[50vh]">
-                    <img
+                    <Image
                         src={property.posterUrl}
                         alt={`${property.title} trailer`}
+                        fill
                         className="w-full h-[250px] md:h-[50vh] object-cover"
                     />
                 </div>
@@ -82,9 +84,10 @@ const MovieDetail: React.FC<{ property: MainMovieProps }> = ({ property }) => {
                     <div className="flex flex-col md:flex-row">
                         {/* Poster */}
                         <div className="w-[130px] md:w-[230px]">
-                            <img
+                            <Image
                                 src={property.posterUrl}
                                 alt={`${property.title} poster`}
+                                fill
                                 className="h-[200px] md:h-[325px] w-full object-cover rounded-lg"
                             />
                         </div>
@@ -138,13 +141,13 @@ const MovieDetail: React.FC<{ property: MainMovieProps }> = ({ property }) => {
 
             {/* Action buttons */}
             <div className="flex py-3 space-x-5">
-                <button 
+                <button
                     className={`flex btn-one items-center ${isSaved ? "btn-active" : "btn-one"}`}
                     onClick={handleSave}
                 >
                     {isSaved
                         ? <FaBookmark size={17} className="pr-1.5" />
-                        : <FaRegBookmark size={17} className="pr-1.5" /> 
+                        : <FaRegBookmark size={17} className="pr-1.5" />
                     }
                     {isSaved ? "Saved" : "Save"}
                 </button>
