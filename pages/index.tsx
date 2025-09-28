@@ -4,6 +4,7 @@ import GenreList from "@/components/common/GenreList";
 import { useEffect, useState } from "react";
 import { MainMovieProps, MovieApiResponse } from "@/interfaces";
 import axios from "axios";
+import Image from "next/image";
 
 export default function Home() {
   const [movies, setMovies] = useState<MainMovieProps[]>([]);
@@ -62,10 +63,11 @@ export default function Home() {
           </div>
         </div>
         <div>
-          <img
+          <Image
             src={randomMovie.posterUrl}
             alt={randomMovie.title}
-            className="w-full h-full object-cover"
+            fill
+            className="object-cover w-full h-full"
           />
         </div>
       </div>

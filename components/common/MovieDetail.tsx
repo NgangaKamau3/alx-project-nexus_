@@ -23,26 +23,6 @@ const MovieDetail: React.FC<{ property: MainMovieProps }> = ({ property }) => {
                 <p>{property.rating ? `${property.rating}/10` : "No ratings yet."}</p>
             )
         },
-        // {
-        //     label: "Comments",
-        //     content: property.reviews.length > 0
-        //         ? property.reviews.map((review, index) => (
-        //             <div key={index} className="flex flex-col gap-1 mt-2 md:mt-4">
-        //                 <div className="flex justify-between">
-        //                     <div>{review.user}</div>
-        //                     <div className="flex">
-        //                         {
-        //                             Array.from({length: review.stars}).map((_, i) => (
-        //                                 <IoStar key={i} size={18} color="green" />
-        //                             ))
-        //                         }
-        //                     </div>
-        //                 </div>
-        //                 <div className="pb-1.5">{review.comment}</div>
-        //                 <hr />
-        //             </div>
-        //         )) : (<p>No reviews yet</p>),
-        // },
     ];
 
     const [activeTab, setActiveTab] = useState<number>(0);
@@ -104,7 +84,7 @@ const MovieDetail: React.FC<{ property: MainMovieProps }> = ({ property }) => {
                                 </div>
                                 <div className="flex items-center">
                                     <GiTomato color="red" size={20} className="mr-1.5" />
-                                    "N/A"
+                                    &quot;N/A&quot;
                                 </div>
                             </div>
 
